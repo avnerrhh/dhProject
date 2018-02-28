@@ -24,7 +24,8 @@ def get_lyrics_youtube_from_url(parm):
     ans = []
     ans.append(get_lyric_from_data(data))
     print ans[0]
-    #ans.append(get_song_commets("https://www.youtube.com/watch?v=" + youtube_addres(data)))
+    youtube_code = youtube_addres(data)
+    
     return ans
 
 
@@ -41,7 +42,7 @@ def get_lyrics(name):
     for link in page.xpath("//a"):
         if flag and link.text != None:
             if (equal_name(link.text, name)):
-                 print get_lyrics_youtube_from_url(link.get("href"))
+
                  return get_lyrics_youtube_from_url(link.get("href"))
         if link.text != None and len(link.text) > 2 and link.text[:3] == "and":
             flag = True
@@ -49,4 +50,4 @@ def get_lyrics(name):
             flag = False
     return "Not Found"
 
-get_lyrics("Whole Lotta Rosie")
+get_lyrics("la woman")

@@ -7,9 +7,10 @@ from apiclient.errors import HttpError
 from oauth2client.tools import argparser
 from apiclient.discovery import build
 
+
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
-DEVELOPER_KEY = 'key'
+DEVELOPER_KEY = 'AIzaSyALIaMwCTin1BCBJJRoq5p3LwZsK7n2t0s'
 
 
 def get_comment_threads(youtube, video_id, comments):
@@ -57,16 +58,17 @@ if __name__ == "__main__":
   try:
     output_file = open("output.txt", "w")
     comments = []
-    video_comment_threads = get_comment_threads(youtube, args.videoid, comments)
+    video_comment_threads = get_comment_threads(youtube, "IkIxWyjxcok", comments)
 
     for thread in video_comment_threads:
       get_comments(youtube, thread["id"], comments)
 
     for comment in comments:
-      output_file.write(comment.encode("utf-8") + "\n")
+      print comment
 
     output_file.close()
     print "Total comments: %d" % len(comments)
+
 
   except HttpError, e:
     print "An HTTP error %d occurred:\n%s" % (e.resp.status, e.content)
